@@ -1,0 +1,4 @@
+source 'https://rubygems.org'
+
+#gem 'musako', git: 'https://github.com/waka/musako'
+gem 'musako', path: '/home/vagrant/work/musako'

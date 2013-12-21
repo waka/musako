@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+require 'commander/import'
+require 'musako'
+
+program :name, 'musako'
+program :version, Musako::VERSION
+program :description, 'Musako is a static site generator'
+
+default_command :help
+
+command :generate do |c|
+  c.syntax = 'musako generate PATH'
+  c.description = 'Creates a new scaffold in PATH'
+
+  c.action do |args, options|
+    Musako::Cli::Generator.process(args)
+  end
+end
+alias_command :g, :generate
+
+command :build do |c|
+  c.syntax = 'musako build'
+  c.description = 'Build your site'
+
+  c.action do |args, options|
+    options = Musako.configuration(options.__hash__)
+    Musako::Cli::Builder.process(options)
+  end
+end
+alias_command :b, :build
+
+command :serve do |c|
+  c.syntax = 'musako server [options]'
+  c.description = 'Serve your site locally'
+
+  c.option '-D', '--detach', 'Run the server in the background (detach)'
+  c.option '-P', '--port [PORT]', 'Port to listen on'
+
+  c.action do |args, options|
+    options = Musako.configuration(options.__hash__)
+    Musako::Cli::Server.process(options)
+  end
+end
+alias_command :s, :serve
