@@ -11,6 +11,12 @@ module Musako
       def render
         compiled = Sass::Engine.new(self.original_file_source, syntax: :scss)
                                .render
+        
+        dir = File.dirname(self.output_path)
+        unless File.directory? dir
+          FileUtils.mkdir_p dir
+        end
+
         File.open(self.output_path, "w") do |file|
           file.write compiled
         end
