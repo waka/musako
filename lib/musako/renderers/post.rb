@@ -1,3 +1,4 @@
+require 'date'
 require 'slim'
 require 'redcarpet'
 
@@ -51,12 +52,15 @@ module Musako
       end
 
       def set_meta_data(title)
-        time = self.file_updated_at
+        buf  = self.file_name.split("-")
+
+        name = (buf.size > 1) ? buf[1] : buf[0]
+        date = DateTime.parse(buf[0]) rescue self.file_updated_at
 
         @title = title
-        @date = time
-        @iso_date = time.strftime("%FT%T%z")
-        @url = File.join("#{time.year}/#{time.month}/#{time.day}", self.file_name)
+        @date = date
+        @iso_date = date.strftime("%FT%T%z")
+        @url = File.join("#{date.year}/#{date.month}/#{date.day}", name)
         @path = self.file_path
       end
     end
