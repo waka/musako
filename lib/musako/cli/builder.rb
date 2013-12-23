@@ -33,7 +33,7 @@ module Musako
           post = Musako::Renderers::Post.new(file)
           post.render
 
-          posts << post
+          posts.unshift(post)
         end
 
         views_dir  = Musako.views_path
