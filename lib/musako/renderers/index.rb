@@ -19,7 +19,10 @@ module Musako
 
         layout = Slim::Template.new(
           File.join(Musako.views_path, "layouts", "application.slim")
-        ).render(self, {title: Musako.configuration[:title]}) { contents }
+        ).render(self, {
+          title: Musako.configuration[:title],
+          page_title: Musako.configuration[:title]
+        }) { contents }
 
         File.open(self.output_path, "w") do |file|
           file.write layout
