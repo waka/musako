@@ -24,7 +24,7 @@ module Musako
         title = if @html =~ /<h1>(.*?)<\/h1>/
           $1
         else
-          "No title"
+          Musako.configuration[:title]
         end
         self.set_meta_data(title)
 
@@ -34,7 +34,7 @@ module Musako
 
         layout = Slim::Template.new(
           File.join(Musako.views_path, "layouts", "application.slim")
-        ).render(self, {title: Musako.configuration[:title]}) { post }
+        ).render(self, {title: title}) { post }
 
         dir = File.dirname(self.output_path)
         unless File.directory? dir
