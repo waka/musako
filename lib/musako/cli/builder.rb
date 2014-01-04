@@ -25,7 +25,7 @@ module Musako
       end
 
       def self.build_page_files
-        posts      = []
+        posts = []
 
         # posts to html
         post_files = File.join(Musako.source_path, "posts", "**", "*.md")
@@ -33,10 +33,11 @@ module Musako
           post = Musako::Renderers::Post.new(file)
           post.render
 
-          posts.unshift(post)
+          posts << post
         end
 
         views_dir  = Musako.views_path
+        posts.sort! { |a, b| b.date <=> a.date }
 
         index_file = File.join(views_dir, "index.slim")
         Musako::Renderers::Index.new(index_file, posts).render
