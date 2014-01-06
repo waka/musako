@@ -36,7 +36,7 @@ module Musako
           File.join(Musako.views_path, "layouts", "application.slim")
         ).render(self, {
           title: Musako.configuration[:title],
-          page_title: title
+          page_title: "#{title} - #{Musako.configuration[:title]}"
         }) { post }
 
         dir = File.dirname(self.output_path)
