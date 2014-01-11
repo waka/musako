@@ -26,9 +26,12 @@ Create directories from template (only once).
 
     $ musako generate
 
-Write your post, and build
+Write your post, and build.
+(Filename rule: {YYYYMMDD-hoge.md}
 
-    $ touch posts/blurblur.md
+And can edit "config.yml" for site title and description.
+
+    $ touch posts/20140101-blurblur.md
     $ musako build
 
 Up local httpd.
