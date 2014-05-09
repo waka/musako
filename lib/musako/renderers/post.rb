@@ -1,6 +1,7 @@
 require 'date'
 require 'slim'
 require 'redcarpet'
+require 'pygments'
 
 module Musako
   module Renderers
@@ -13,10 +14,13 @@ module Musako
       end
 
       def render
-        markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-          :autolink => true,
-          :space_after_headers => true,
-          :fenced_code_blocks => true
+        markdown = Redcarpet::Markdown.new(
+          HTMLwithPygments.new(:hard_wrap: true),
+          {
+            autolink: true,
+            space_after_headers: true,
+            fenced_code_blocks: true
+          }
         )
         @html = markdown.render(self.original_file_source)
 

@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "slim"
   spec.add_runtime_dependency "redcarpet"
+  spec.add_runtime_dependency "pygments.rb"
   spec.add_runtime_dependency "builder"
   spec.add_runtime_dependency "sass"
   spec.add_runtime_dependency "commander"
