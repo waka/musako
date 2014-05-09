@@ -15,7 +15,7 @@ module Musako
 
       def render
         markdown = Redcarpet::Markdown.new(
-          HTMLwithPygments.new(:hard_wrap: true),
+          HTMLwithPygments.new(hard_wrap: true),
           {
             autolink: true,
             space_after_headers: true,
